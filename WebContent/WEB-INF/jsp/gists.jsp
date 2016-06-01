@@ -51,6 +51,10 @@
 							<p class="description"><c:out value="${gist.getDescription()}"/></p>
 						</span>
 		  			</div>
+		  			
+		  			<c:if test="${model.fetchMethod.equals('all')}">
+		  				<input type="button" id="loadMore" value="Lataa lisää"/>
+		  			</c:if>
 		  		</c:forEach>
   			</div>
   		</div>

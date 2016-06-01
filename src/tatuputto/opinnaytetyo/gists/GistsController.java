@@ -3,7 +3,6 @@ package tatuputto.opinnaytetyo.gists;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +21,8 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class GistsController {
-	
+	private String accessToken = "cd9c07cb2aa8f0cdd097f6602a3e14be9117e113";
+								  
 	/**
 	 * Asetetaan mallille arvoksi haetut gistit ja palautetaan malli ja näkymä.
 	 */
@@ -35,15 +35,15 @@ public class GistsController {
         fetchMethod = fetchMethod == null ? "user" : fetchMethod;
         
         //Haetaan gistit
-        ArrayList<Gist> gists = new GetGists().getGists(fetchMethod);
+        ArrayList<Gist> gists = new GetGists().getGists(fetchMethod, accessToken);
         
         //Sijoitetaan gistit, sekä hakutapa hashmapiin, joka puolestaan sijoitetaan mallin arvoksi
-        Map<String, Object> myModel = new HashMap<String, Object>();
-        myModel.put("fetchMethod", fetchMethod);
-        myModel.put("gistList", gists);
+        HashMap<String, Object> modelValues = new HashMap<String, Object>();
+        modelValues.put("fetchMethod", fetchMethod);
+        modelValues.put("gistList", gists);
       
         //Palautetaan malli ja näkymä
-        return new ModelAndView("gists", "model", myModel);
+        return new ModelAndView("gists", "model", modelValues);
     }
 	 
 	
@@ -54,7 +54,7 @@ public class GistsController {
 		String gistId = request.getParameter("id");
        
         GetGistForEditing edit = new GetGistForEditing();
-        Gist gist = edit.getGistForEditing(gistId, 123);
+        Gist gist = edit.getGistForEditing(gistId, 123, accessToken);
 		
         return new ModelAndView("editgist", "gist", gist);
     }
@@ -68,11 +68,7 @@ public class GistsController {
 			throws ServletException, IOException {
 		
 		String gistId = request.getParameter("id");
-	
-		return new GetSingleGistAJAX().
-				getSingleGistJSON(gistId, "a0d5658b99b77cffe31de0b2b0d54a8aa5635617");
-		
-
+		return new GetSingleGistAJAX().getSingleGistJSON(gistId, accessToken);
 	}
 	
 	

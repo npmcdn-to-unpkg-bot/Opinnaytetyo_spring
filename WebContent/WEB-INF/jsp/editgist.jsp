@@ -14,8 +14,8 @@
 <script src="http://localhost:8080/Opinnaytetyo_spring/js/AssistGistEdit.js" type="text/javascript"></script>
 
 <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'/>
-<link href="http://localhost:8080/Opinnaytetyo/css/Header.css" rel="stylesheet" type="text/css"/>
-<link href="http://localhost:8080/Opinnaytetyo/css/EditGist.css" rel="stylesheet" type="text/css"/>
+<link href="http://localhost:8080/Opinnaytetyo_spring/css/Header.css" rel="stylesheet" type="text/css"/>
+<link href="http://localhost:8080/Opinnaytetyo_spring/css/EditGist.css" rel="stylesheet" type="text/css"/>
 
 <title>Edit gist</title>
 </head>

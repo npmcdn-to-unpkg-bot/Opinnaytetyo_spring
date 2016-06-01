@@ -30,7 +30,7 @@ public class HandleLogout extends HttpServlet {
 			tokenCookie.setMaxAge(0);
 			response.addCookie(tokenCookie);
 			
-			response.sendRedirect("http://localhost:8080/Opinnaytetyo/jsps/Login.jsp");
+			response.sendRedirect("http://localhost:8080/Opinnaytetyo_spring/jsp/login.jsp");
 		}
 	}
 }

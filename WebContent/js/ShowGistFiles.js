@@ -53,19 +53,19 @@ $("document").ready(function() {
 	});
 	
 	
-	
+	//Haetaan käyttäjän gistit(julkiset/salaiset)
 	$("#getUsersGists").click(function() {
-		var url = "http://localhost:8080/Opinnaytetyo/Gists?fetch=user";
+		var url = "http://localhost:8080/Opinnaytetyo_spring/gists?fetch=user";
 		window.location.href = url;	
 	});
 	
-	
+	//Haetaan kaikkien käyttäjien gistejä(julkiset)
 	$("#getAllPublicGists").click(function() {
-		var url = "http://localhost:8080/Opinnaytetyo/Gists?fetch=all";
+		var url = "http://localhost:8080/Opinnaytetyo_spring/gists?fetch=all";
 		window.location.href = url;	
 	});
 	
-	
+	//Ladataan lisää gistejä
 	$(".listGists").on("click", "#loadMore", function() {
 		loadMoreGists();
 	});

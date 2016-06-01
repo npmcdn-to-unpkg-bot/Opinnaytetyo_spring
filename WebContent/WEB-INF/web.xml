@@ -7,7 +7,7 @@
   <display-name>Opinnaytetyo_spring</display-name>
   
   <welcome-file-list>
-    <welcome-file>/Login.jsp</welcome-file>
+    <welcome-file>/login.jsp</welcome-file>
   </welcome-file-list>
  
  
@@ -19,9 +19,14 @@
 
   <servlet-mapping>
     <servlet-name>Opinnaytetyo_spring</servlet-name>
+    <url-pattern>/login</url-pattern>
+    <url-pattern>/authorize</url-pattern>
+    <url-pattern>/getaccesstoken</url-pattern>
     <url-pattern>/gists</url-pattern>
     <url-pattern>/getsinglegistajax</url-pattern>
     <url-pattern>/editgist</url-pattern>
   </servlet-mapping>
  
+  
+  
 </web-app>
