@@ -23,11 +23,12 @@ public class LoginController {
 	
 	
 	@RequestMapping("/login")
-	public ModelAndView showLoginPage(HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView login(HttpServletRequest request, HttpServletResponse response)
 	            throws ServletException, IOException {
 
 		Cookie[] cookies = request.getCookies();
 		User user = new CheckAccessTokenCookie().validAccessTokenCookie(cookies);
+		System.out.println(user);
 		
 		if(user != null) {
 			HttpSession session = request.getSession(true);
@@ -40,6 +41,10 @@ public class LoginController {
 			return new ModelAndView("redirect:/gists");
 		}
 		else {
+			Cookie tokenCookie = new Cookie("accesstoken", "");
+	   		tokenCookie.setMaxAge(0); 
+	   		response.addCookie(tokenCookie);
+			
 			return new ModelAndView("login");
 		}
 	}
@@ -66,7 +71,26 @@ public class LoginController {
    		tokenCookie.setMaxAge(60*60*24*7); 
    		response.addCookie(tokenCookie);
 		
-		return new ModelAndView("redirect:/gists");
+		return new ModelAndView("redirect:/login");	
+	}
+	
+	
+	@RequestMapping("/logout")
+	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response)
+	            throws ServletException, IOException {
+
+		//Tuhotaan sessio
+		HttpSession session = request.getSession(false);
+		session.invalidate();
+		
+		//Poistetaan access tokenin sisältävä eväste
+		Cookie tokenCookie = new Cookie("accesstoken", "");
+		tokenCookie.setMaxAge(0);
+		response.addCookie(tokenCookie);
+		
+		return new ModelAndView("redirect:/login");
 		
 	}
+	
+	
 }

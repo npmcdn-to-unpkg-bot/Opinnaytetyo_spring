@@ -20,6 +20,7 @@
   <servlet-mapping>
     <servlet-name>Opinnaytetyo_spring</servlet-name>
     <url-pattern>/login</url-pattern>
+    <url-pattern>/logout</url-pattern>
     <url-pattern>/authorize</url-pattern>
     <url-pattern>/getaccesstoken</url-pattern>
     <url-pattern>/gists</url-pattern>

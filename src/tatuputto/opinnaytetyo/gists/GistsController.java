@@ -7,6 +7,7 @@ import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +22,6 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class GistsController {
-	private String accessToken = "cd9c07cb2aa8f0cdd097f6602a3e14be9117e113";
 								  
 	/**
 	 * Asetetaan mallille arvoksi haetut gistit ja palautetaan malli ja näkymä.
@@ -30,6 +30,15 @@ public class GistsController {
     public ModelAndView getMultipleGists(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+		String accessToken = ""; 
+		HttpSession session = request.getSession(false);
+		if(session.getAttribute("accesstoken") != null) {
+			accessToken = (String)session.getAttribute("accesstoken");
+		}
+		else {
+			return new ModelAndView("403forbidden");
+		}
+		
         String fetchMethod = request.getParameter("fetch");
         //Haetaan oletusarvona käyttäjän gistejä
         fetchMethod = fetchMethod == null ? "user" : fetchMethod;
@@ -51,6 +60,15 @@ public class GistsController {
     public ModelAndView getGistForEditing(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+		String accessToken = ""; 
+		HttpSession session = request.getSession(false);
+		if(session.getAttribute("accesstoken") != null) {
+			accessToken = (String)session.getAttribute("accesstoken");
+		}
+		else {
+			return new ModelAndView("403forbidden");
+		}
+		
 		String gistId = request.getParameter("id");
        
         GetGistForEditing edit = new GetGistForEditing();
@@ -66,6 +84,15 @@ public class GistsController {
 	@RequestMapping(value = "/getsinglegistajax", method = RequestMethod.GET,  produces="application/json")
 	public @ResponseBody String getSingleGistAJAX(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
+		
+		String accessToken = ""; 
+		HttpSession session = request.getSession(false);
+		if(session.getAttribute("accesstoken") != null) {
+			accessToken = (String)session.getAttribute("accesstoken");
+		}
+		else {
+			return null;
+		}
 		
 		String gistId = request.getParameter("id");
 		return new GetSingleGistAJAX().getSingleGistJSON(gistId, accessToken);

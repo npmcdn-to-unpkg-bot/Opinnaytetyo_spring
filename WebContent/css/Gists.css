@@ -98,11 +98,11 @@ input[type="button"]:hover {
 
 
 .singleGist a {
-	font-size: 18px;
+	font-size: 16px;
 }
 
 .gistOwner {
-	font-size: 18px;
+	font-size: 16px;
 }
 
 
@@ -153,7 +153,7 @@ input[type="button"]:hover {
 }
 
 #toGist {
-	font-size: 20px;
+	font-size: 16px;
     margin-top: 8px;
     margin-left: 10px;
     float: left;
