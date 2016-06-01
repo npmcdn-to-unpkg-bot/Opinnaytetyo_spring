@@ -1,0 +1,234 @@
+body {
+	margin: 0px;
+}
+
+p {
+	margin: 0px;
+	font-family: 'Roboto', sans-serif;
+}
+
+a {
+	font-size: 16px;
+	font-family: 'Roboto', sans-serif;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+input[type="button"] {
+    -webkit-border-radius: 4;
+    -moz-border-radius: 4;
+    border-radius: 4px;
+    font-family: 'Roboto', sans-serif;
+    color: #ffffff;
+    font-size: 14px;
+    padding: 6px 12px;
+    text-decoration: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    margin-top: 5px;
+    margin-right: 6px;
+}
+
+
+input[type="button"]:hover {
+	text-decoration: none;
+}
+	
+	
+.content {
+	width: 90%;
+	margin-top: 30px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.filters {
+	margin-bottom:20px;
+}
+
+.filteringOptions {
+	display: none;
+	height: 200px;
+}
+
+#addFilters, #getUsersGists, #getAllPublicGists {
+	color: black;
+}
+
+#addFilters:hover, #getUsersGists:hover, #getAllPublicGists:hover  {
+ 	background: #A9A4A4;
+}
+
+
+/*Vasen content - gistien listaus*/
+.contentLeft {
+	float: left;
+	width: 35%;
+	height: 850px;
+}
+
+
+.listGists {
+	height: 100%;
+	overflow-y: scroll;
+	background-color: whitesmoke;
+}
+
+.singleGist {
+	height: 100px;
+	cursor: pointer;
+	/*border-style: solid;*/
+	border-radius: 4px;
+	word-break: break-all;
+	background-color: white;
+	margin-top: 2px;
+}
+
+.singleGistContainer {
+	padding: 5px;
+}
+
+
+.selected {
+	background-color: #21e054;
+}
+
+
+.singleGist a {
+	font-size: 18px;
+}
+
+.gistOwner {
+	font-size: 18px;
+}
+
+
+.description {
+	font-size: 14px;
+}
+
+#loadMore {
+    font-size: 16px;
+    color: black;
+    background-color: lightblue;
+    width: 96%;
+    margin-left: 2%;
+    margin-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    
+}
+
+
+
+/*Oikea content - yksittainen gist*/
+.contentRight {
+	background-color: #D4DDE0;
+	width: 65%;
+	height: 850px;
+	margin-left: 35%;
+}
+
+.contentRight a {
+	font-size: 14px
+}
+
+.singleGistFiles {
+	height: 100%;
+	overflow-y: scroll;
+}
+
+.gistInfo {
+	height: 40px;	
+}
+
+.gistInfo img {
+	width: 30px;
+    float: left;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+#toGist {
+	font-size: 20px;
+    margin-top: 8px;
+    margin-left: 10px;
+    float: left;
+}
+
+.fileInfo {
+	padding: 4px;
+}
+
+
+#editGist {
+	float: right;
+    background: #21e054;
+}
+
+#editGist:hover {
+ 	background: #0dbf3d;
+}
+	
+
+#deleteGist {
+	float: right;
+    background: #db4141;
+}
+
+#deleteGist:hover {
+ 	background: #b30d0d;
+}
+	
+	
+#forkGist {
+	color: black;
+}
+
+##forkGist:hover {
+	background: #A9A4A4;
+}
+
+.gistFirstFile {
+	width: 98%;
+    margin-left: auto;
+    margin-right: auto;
+	/*border-style: solid;
+	border-width: 1px;
+	background-color: #e6e6e6;*/
+	border-radius: 4px;
+	background-color: white;
+	padding-bottom: 4px;
+	margin-bottom: 20px;
+}
+
+.gistFile {
+	width: 98%;
+    margin-left: auto;
+    margin-right: auto;
+	/*border-style: solid;
+	border-width: 1px;
+	background-color: #e6e6e6;*/
+	border-radius: 4px;
+	background-color: white;
+	padding-bottom: 4px;
+	margin-bottom: 20px;
+}
+
+div[id^="editor"] {
+	width: 99%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 2px;
+    /*border-style: solid;
+    border-width: 1px;*/
+}
+
+.loading {
+	background: url(../images/loading.gif) no-repeat center center;
+	height: 90%;
+	display: none;
+}
