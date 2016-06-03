@@ -40,15 +40,14 @@ $("document").ready(function() {
 	//Valitun gistin poistaminen
 	$("#deleteGist").click(function() {
 		if (window.confirm("Haluatko varmasti poistaa tämän gistin?")) { 
-			var url = "http://localhost:8080/Opinnaytetyo/DeleteGist?id=" + currentGistId + "";
+			var url = "http://localhost:8080/Opinnaytetyo_spring/deletegist?id=" + currentGistId + "";
 			window.location.href = url;
 		}
-		
 	});
 	
 	//Valitun gistin muokkaaminen
 	$("#editGist").click(function() {
-		var url = "http://localhost:8080/Opinnaytetyo/EditGist?id=" + currentGistId + "";
+		var url = "http://localhost:8080/Opinnaytetyo_spring/editgist?id=" + currentGistId + "";
 		window.location.href = url;	
 	});
 	
@@ -79,7 +78,7 @@ function getGistFiles(gistId) {
 	var data = {id : gistId};
 	
 	if(gistId) {
-		$.get("http://localhost:8080/Opinnaytetyo_spring/getsinglegistajax", data, function(response) {
+		$.get("http://localhost:8080/Opinnaytetyo_spring/singlegistajax", data, function(response) {
 			handleResponse(gistId, response);			
 		}).
 		fail(function() {

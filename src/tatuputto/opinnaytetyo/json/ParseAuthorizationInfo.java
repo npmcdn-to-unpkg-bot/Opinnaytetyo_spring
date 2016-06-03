@@ -3,9 +3,11 @@ package tatuputto.opinnaytetyo.json;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.stereotype.Service;
 
-import tatuputto.opinnaytetyo.gists.User;
+import tatuputto.opinnaytetyo.domain.User;
 
+@Service
 public class ParseAuthorizationInfo {
 	
 	public User parseJSON(String JSONresponse) {

@@ -14,8 +14,8 @@
 
   <!-- the application context definition for the springapp DispatcherServlet -->
 
-  <context:component-scan base-package="tatuputto.opinnaytetyo.gists"/>
-  <context:component-scan base-package="tatuputto.opinnaytetyo.connections"/>
+  <context:component-scan base-package="tatuputto.opinnaytetyo"/>
+  
   <mvc:annotation-driven/>
 
   <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

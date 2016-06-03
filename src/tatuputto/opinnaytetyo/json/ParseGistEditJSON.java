@@ -2,8 +2,9 @@ package tatuputto.opinnaytetyo.json;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.stereotype.Service;
 
-
+@Service
 public class ParseGistEditJSON {
 	public String parseJSON(String JSONresponse) {
 		try {

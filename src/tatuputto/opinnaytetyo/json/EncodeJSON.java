@@ -2,10 +2,12 @@ package tatuputto.opinnaytetyo.json;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.stereotype.Service;
 
 /**
  * Datan muuntaminen JSON-muotoon.
  */
+@Service
 public class EncodeJSON {
 
 	/**

@@ -11,15 +11,15 @@
 				<p>${sessionScope.login}</p>
 			</div>
 			<ul id="navmenu">
-				<li><a href="Gists">Listaa gistit</a></li>
-				<li><a href="/jsps/CreateNewGist">Luo uusi gist</a></li>
+				<li><a href="http://localhost:8080/Opinnaytetyo_spring/gists">Listaa gistit</a></li>
+				<li><a href="http://localhost:8080/Opinnaytetyo_spring/creategist">Luo uusi gist</a></li>
 				<li><a href="http://localhost:8080/Opinnaytetyo_spring/logout">Logout</a></li>
 			</ul>
 	    </c:when>    
 	    <c:otherwise>
 	    	<ul id="navmenu">
-				<li><a href="GetGists">Listaa gistit</a></li>
-				<li><a href="CreateNewGist">Luo uusi Gist</a></li>
+				<li><a href="http://localhost:8080/Opinnaytetyo_spring/gists">Listaa gistit</a></li>
+				<li><a href="http://localhost:8080/Opinnaytetyo_spring/creategist">Luo uusi Gist</a></li>
 				<li><a href="http://localhost:8080/Opinnaytetyo_spring/login">Login</a></li>
 			</ul>	
 	    </c:otherwise>

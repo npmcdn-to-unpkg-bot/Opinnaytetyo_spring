@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="tatuputto.opinnaytetyo.gists.Gist" %>
+<%@ page import="tatuputto.opinnaytetyo.domain.Gist" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -11,11 +11,11 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.3/ace.js" type="text/javascript"></script>
-<script src="http://localhost:8080/Opinnaytetyo/js/ShowSingleGist.js" type="text/javascript"></script>
+<script src="http://localhost:8080/Opinnaytetyo_spring/js/ShowSingleGist.js" type="text/javascript"></script>
 
 <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'/>
-<link href="http://localhost:8080/Opinnaytetyo/css/Header.css" rel="stylesheet" type="text/css"/>
-<link href="http://localhost:8080/Opinnaytetyo/css/SingleGist.css" rel="stylesheet" type="text/css"/>
+<link href="http://localhost:8080/Opinnaytetyo_spring/css/Header.css" rel="stylesheet" type="text/css"/>
+<link href="http://localhost:8080/Opinnaytetyo_spring/css/SingleGist.css" rel="stylesheet" type="text/css"/>
 
 <title>Gist</title>
 </head>
@@ -23,65 +23,46 @@
 <div class="container">
 	<%@ include file="header.jsp" %>
 	<div class="content">
-	
-		
-		
 		<div class="files">
-			<% 
-			if (request.getAttribute("gist") != null && request.getAttribute("id") != null) {
-				Gist gist = (Gist)request.getAttribute("gist");
 		
-				%>
-				<div class="gistOptions">
-					<div class="OptionsContainer">
-						<input type="hidden" class="gistId" value="<%=gist.getId() %>"/>
-						<img src="<%=gist.getOwner().getAvatarUrl() %>"/>
-						<p class="gistName"><%=gist.getOwner().getLogin() + " / " + gist.getFiles().get(0).getFilename() %></p>
-							
-						<%
-						if((Boolean)request.getAttribute("gistOwner")) {
-							%>
+			<div class="gistOptions">
+				<div class="OptionsContainer">
+					<input type="hidden" class="gistId" value="${gist.getId()}"/>
+					<img src="${gist.getOwner().getAvatarUrl()}"/>
+					<p class="gistName">${gist.getOwner().getLogin()} / 
+							${gist.getFiles().get(0).getFilename()}</p>
+						
+					<c:choose>
+						<c:when test="${gist.isOwnedByCurrentUser()}">
 							<input type="button" id="deleteGist" value="Poista"/>
 							<input type="button" id="editGist" value="Muokkaa"/>
-							<%
-						}
-						else {
-							%>
+						</c:when>
+						<c:otherwise>
 							<input type="button" id="forkGist" value="Fork"/>
-							<%
-						}
-						%>
-						
-						<br><p><%=gist.getDescription() %></p>
-					</div>		
-				</div><br>
-				<%
+						</c:otherwise>
+					</c:choose>
+					<br><p>${gist.getDescription()}</p>
+				</div>		
+			</div><br>
+			
+			<c:forEach items="${gist.getFiles()}" var="file" varStatus="fileIndex">
+				<c:set var="fileNum" value="${'gistFile'}${fileIndex.index}"/>
+				<c:set var="editorNum" value="${'editor'}${fileIndex.index}"/>
 				
-				
-				for (int i = 0; i < gist.getFiles().size(); i++) { 
-					String fileNum = "gistFile" + i;
-					String editorNum = "editor" + i;
-					
-					%>
-					<div class="<%=fileNum %>">
-						<div class="fileInfo">
-							<p><%=gist.getFiles().get(i).getFilename() %></p> 
-						</div>
-						
-						<div id="<%=editorNum %>">
-							<p id="content"><%=gist.getFiles().get(i).getContent() %></p>	
-						</div>
+				<div class="${fileNum}">
+					<div class="fileInfo">
+						<p>${file.getFilename()}</p> 
 					</div>
-					<%
-				}
-			} 
-			else {
-				out.println("Gistiä ei löytynyt");
-			}
+					
+					<div id="${editorNum}">
+						<p id="content">${file.getContent()}</p>	
+					</div>
+				</div>
+				
 			
-			%>
-			</div>
-			
+			</c:forEach>
+		</div>
+		
 	</div>
 </div>
 

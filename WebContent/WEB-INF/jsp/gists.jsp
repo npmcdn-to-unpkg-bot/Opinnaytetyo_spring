@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="tatuputto.opinnaytetyo.gists.Gist" %>
+<%@ page import="tatuputto.opinnaytetyo.domain.Gist" %>
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -45,11 +45,11 @@
 			<div class="listGists">
 				<c:forEach items="${model.gistList}" var="gist">
 					<div class="singleGist" id="${gist.getId()}">
-						<span class="singleGistContainer">
+						<div class="singleGistContainer">
 							<p class="gistOwner">${gist.getOwner().getLogin()} / 
 									<a href="${gist.getUrl()}">${gist.getFiles().get(0).getFilename()}</a></p>
 							<p class="description"><c:out value="${gist.getDescription()}"/></p>
-						</span>
+						</div>
 		  			</div>
 		  		</c:forEach>
 		  		
