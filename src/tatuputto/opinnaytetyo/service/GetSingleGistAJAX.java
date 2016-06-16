@@ -20,7 +20,7 @@ public class GetSingleGistAJAX {
 	}
 	
 	
-	public String getSingleGistAsJSON(String gistId, String accessToken) {
+	public String getGistAsJSON(String gistId, String accessToken) {
 		if(!gistId.equals(null) || !gistId.equals("")) {
 			String url = "https://api.github.com/gists/" + gistId;
 			String[] responseContent = connection.formConnection("GET", url, "", accessToken);

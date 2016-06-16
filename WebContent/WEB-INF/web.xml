@@ -27,7 +27,9 @@
     <url-pattern>/singlegist</url-pattern>
     <url-pattern>/singlegistajax</url-pattern>
     <url-pattern>/creategist</url-pattern>
+    <url-pattern>/create</url-pattern>
     <url-pattern>/editgist</url-pattern>
+    <url-pattern>/edit</url-pattern>
     <url-pattern>/deletegist</url-pattern>
   </servlet-mapping>
  

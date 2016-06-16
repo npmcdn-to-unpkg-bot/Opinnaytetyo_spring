@@ -19,6 +19,7 @@ $("document").ready(function() {
 	//Klikatun gistin tiedostojen hakeminen
 	$(".listGists").on("click", ".singleGist", function() {
 		var selectedGistId = $(this).attr("id");
+		
 		if(currentGistId !== selectedGistId) {
 			currentGistId = selectedGistId;
 			resetFields();
@@ -31,6 +32,7 @@ $("document").ready(function() {
 			$(".loading").show();
 		}
 	});
+	
 	
 	$(".content").on("click", "#addFilters", function() {
 		$(".filteringOptions").toggle("slow");
@@ -93,7 +95,7 @@ function getGistFiles(gistId) {
 //Puretaan tiedostojen sisältö ACE-editoreihin.
 function handleResponse(gistId, response) {
 	var i = 0;
-	var viewUrl = "http://localhost:8080/Opinnaytetyo/GetSingleGist?id=" + gistId;
+	var viewUrl = "http://localhost:8080/Opinnaytetyo_spring/singlegist?id=" + gistId;
 	var owner = response["login"];
 	var ownerAvatarUrl = response["avatarUrl"];
 	var files = response["files"];

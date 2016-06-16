@@ -53,7 +53,7 @@ public class ParseMultipleGists {
 					}
 					catch(JSONException e) {
 						//owner = new User("Anonymous", "https://avatars.githubusercontent.com/u/5699778?v=3");
-						e.printStackTrace();
+						//e.printStackTrace();
 					}
 					
 				}

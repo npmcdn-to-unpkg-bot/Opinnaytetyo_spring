@@ -6,14 +6,14 @@ $("document").ready(function() {
 	
 	$(".OptionsContainer").on("click", "#editGist", function() {
 		var gistId = $(".gistId").val();
-		var url = "http://localhost:8080/Opinnaytetyo/EditGist?id=" + gistId
+		var url = "http://localhost:8080/Opinnaytetyo_spring/editgist?id=" + gistId
 		window.location.href = url;
 	});
 	
 	$(".OptionsContainer").on("click", "#deleteGist", function() {
 		if (window.confirm("Haluatko varmasti poistaa tämän gistin?")) { 
 			var gistId = $(".gistId").val();
-			var url = "http://localhost:8080/Opinnaytetyo/DeleteGist?id=" + gistId
+			var url = "http://localhost:8080/Opinnaytetyo_spring/deletegist?id=" + gistId
 			window.location.href = url;
 		}
 	});

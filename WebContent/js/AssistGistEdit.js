@@ -150,7 +150,7 @@ function getFieldValues() {
 	}
 	
 	//Muodostetaan lähetettävän datan sisältävä olio
-	data["id"] = gistId;
+	//data["id"] = gistId;
 	data["description"] = description;
 
 	if(Object.keys(filesToBeEdited).length > 0) {
@@ -162,12 +162,22 @@ function getFieldValues() {
 		
 	
 	
-	$.post("http://localhost:8080/Opinnaytetyo/DoEdit", JSON.stringify(data), function(response) {
+	/*$.post("http://localhost:8080/Opinnaytetyo_spring/doedit?id=" + gistId, JSON.stringify(data), function(response) {
 		alert(response);
 		//window.location.href = "http://localhost:8080/Opinnaytetyo/";
-	}, "json");
-	//});
+	}, "json");*/
 	
+	
+	$.ajax({
+		headers: { 
+	        'Accept': 'application/json',
+	        'Content-Type': 'application/json' 
+	    },
+		  type: "POST",
+		  url: "http://localhost:8080/Opinnaytetyo_spring/doedit?id=" + gistId,
+		  data: JSON.stringify(data),
+		  dataType: "json"
+	});
 
 	
 }

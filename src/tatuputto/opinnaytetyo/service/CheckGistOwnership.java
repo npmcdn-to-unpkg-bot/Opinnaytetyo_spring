@@ -9,35 +9,30 @@ import tatuputto.opinnaytetyo.json.ParseSingleGist;
 
 
 @Service
-public class GetGistForEditing  {
+public class CheckGistOwnership {
 	
 	private AuthorizedConnectionOauth connection;
 	private ParseSingleGist parse;
 	
-	
 	@Autowired
-	public GetGistForEditing(AuthorizedConnectionOauth connection, ParseSingleGist parse) {
+	public CheckGistOwnership(AuthorizedConnectionOauth connection, ParseSingleGist parse) {
 		this.connection = connection;
 		this.parse = parse;
 	}
 	
 	
-	public Gist getGist(String gistId, int userId, String accessToken) {
+	public boolean isOwner(String gistId, int userId, String accessToken) {
 		String url = "https://api.github.com/gists/" + gistId;
 		String[] responseContent = connection.formConnection("GET", url, "", accessToken);
 		Gist gist = parse.parseJSON(responseContent[2]);
 		
-		//Tarkistetaan onko kirjautunut käyttäjä gistin omistaja
+		
 		if(gist.getOwner().getId() == userId) {
-			return gist;			
-		}
-		//Jos ei ole lähetetään vastauskoodi 403 - forbidden
+			return true;
+		}	
 		else {
-			return null;
+			return false;
 		}
-
 	}
-	
-	
-	
+
 }

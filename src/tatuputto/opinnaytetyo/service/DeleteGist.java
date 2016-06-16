@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import tatuputto.opinnaytetyo.dao.AuthorizedConnectionOauth;
-import tatuputto.opinnaytetyo.domain.Gist;
-import tatuputto.opinnaytetyo.json.ParseSingleGist;
 
 /**
  * Gistin poistaminen.
@@ -14,12 +12,12 @@ import tatuputto.opinnaytetyo.json.ParseSingleGist;
 public class DeleteGist {
        
 	private AuthorizedConnectionOauth connection;
-	private ParseSingleGist parse;
+	private CheckGistOwnership checkOwner;
 	
 	@Autowired
-	public DeleteGist(AuthorizedConnectionOauth connection, ParseSingleGist parse) {
+	public DeleteGist(AuthorizedConnectionOauth connection, CheckGistOwnership checkOwner) {
 		this.connection = connection;
-		this.parse = parse;
+		this.checkOwner = checkOwner;
 	}
 	
 	
@@ -27,13 +25,8 @@ public class DeleteGist {
 	 * Lähetetään poistamispyyntö valitusta gististä.
 	 */ 
 	public void deleteGist(String gistId, int userId, String accessToken) {
-		String url = "https://api.github.com/gists/" + gistId;
-		String[] responseContent = connection.formConnection("GET", url, "", accessToken);
-		Gist gist = parse.parseJSON(responseContent[2]);
-		
-		//Lähetään gistin poistamispyyntö
-		//String[] responseContent = new AuthorizedConnectionOauth().formConnection("DELETE", url, "", accessToken);
-		if(gist.getOwner().getId() == userId) {
+		//Lähetään gistin poistamispyyntö jos kirjautunut käyttäjä on gistin omistaja
+		if(checkOwner.isOwner(gistId, userId, accessToken)) {
 			String deleteUrl = "https://api.github.com/gists/" + gistId;
 			connection.formConnection("DELETE", deleteUrl, "", accessToken);			
 		}	

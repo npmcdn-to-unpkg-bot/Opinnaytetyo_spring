@@ -19,6 +19,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.3/ace.js" type="text/javascript"></script>
 <script src="http://localhost:8080/Opinnaytetyo_spring/js/ShowGistFiles.js" type="text/javascript"></script>
 
+
+<!-- React ja React router -->
+<script src="https://fb.me/react-15.1.0.js"></script>
+<script src="https://fb.me/react-dom-15.1.0.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+<script src="https://npmcdn.com/react-router@2.4.0/umd/ReactRouter.min.js"></script>
+<!-- /React -->
+
+
+
 <title>Gists</title>
 </head>
 <body>

@@ -35,10 +35,25 @@ public class GetGists {
 		else if(fetchMethod.equals("all")) {
 			url = "https://api.github.com/gists/public?page=1&per_page=100";
 		}
-	
+		//Haetaan haettavan käyttäjän julkiset gistit
+		else if(fetchMethod.equals("search")) {
+			String searchTarget = "Pordi";
+			url = "https://api.github.com/users/" + searchTarget + "/gists";
+		}
+		
+
 		responseContent = connection.formConnection("GET", url, "", accessToken);
 		return parse.parseJSON(responseContent[2]);
 	
 	}
+	
+	
+	//Haetaan haettavan käyttäjän julkiset gistit
+	public ArrayList<Gist> searchGistsByUser(String fetchMethod, String searchTarget, String accessToken) {
+		String url = "https://api.github.com/users/" + searchTarget + "/gists";
+		String[] responseContent = connection.formConnection("GET", url, "", accessToken);
+		return parse.parseJSON(responseContent[2]);
+	}
+	
 	
 }

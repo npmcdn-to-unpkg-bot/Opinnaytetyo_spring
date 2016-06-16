@@ -52,7 +52,7 @@ public class GetSingleGist {
 		rd.forward(request, response);
 	}*/
 	
-	public Gist getSingleGist(String gistId, int userId, String accessToken) {
+	public Gist getGist(String gistId, int userId, String accessToken) {
 		String url = "https://api.github.com/gists/" + gistId;
 		String[] responseContent = connection.formConnection("GET", url, "", accessToken);
 		Gist gist = parse.parseJSON(responseContent[2]);

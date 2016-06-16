@@ -36,6 +36,7 @@ $(document).ready(function() {
 //Kerätään Gistin luomiseen tarvittava data dokumentista ja lähetetään se eteenpäin.
 function initiateGistCreation(isPublic) {
 	var data = {};
+	var files = {};
 	var sources = [];
 	var filenames = [];
 	var description = $(".description").val();
@@ -48,8 +49,10 @@ function initiateGistCreation(isPublic) {
 			var getValueFrom = $(filenameFields[j]).closest("[class^=gistFile]").attr("class");
 			getValueFrom = getValueFrom.substring(getValueFrom.length - 1);
 	
-			filenames.push($(filenameFields[j]).val());
-			sources.push(editors[getValueFrom].getValue());
+			var filename = $(filenameFields[j]).val();
+			var source = editors[getValueFrom].getValue();
+			var file = {filename: filename, content: source};
+			files[filename] = file;
 		}
 		else {
 			alert("Tiedostonimi ei voi olla tyhjä.");
@@ -57,14 +60,20 @@ function initiateGistCreation(isPublic) {
 		}
 	}
 
-	//Koostetaan kerätty data olioon.
-	data = {description : description, ispublic : isPublic, filenames: filenames, sources : sources};
-	console.log(data);
 	
-	//AJAX-kutsu Gistin luontimetodiin.
-	$.post("http://localhost:8080/Opinnaytetyo/CreateGist", data, function(response) {
-		alert(response);
-		//window.location = "http://localhost:8080/Opinnaytetyo/";
+	data["description"] = description;
+	data["ispublic"] = isPublic;
+	data["files"] = files;
+
+	$.ajax({
+		headers: { 
+			'Accept': 'application/json',
+	        'Content-Type': 'application/json' 
+		},
+		type: "POST",
+	    url: "http://localhost:8080/Opinnaytetyo_spring/create",
+	    data: JSON.stringify(data),
+	    dataType: "json"
 	});
 }
 
